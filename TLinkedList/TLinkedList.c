@@ -182,17 +182,24 @@ int list_erase(TLinkedList *li, int pos){
     return INVALID_NULL_POINTER;
   list_node *aux,*previous;
   aux = li->head;
-  int i = 0;
-  while(i < pos-1){
-    if (aux->next == NULL)
-      return OUT_OF_RANGE;
-    previous = aux;
-    aux = aux->next;
-    i++;
+  if (pos == 1){
+    li->head = aux->next;
+    free(aux);
+    return SUCCESS;
+  }
+  else{
+    int i = 0;
+    while(i < pos-1){
+      if (aux->next == NULL)
+        return OUT_OF_RANGE;
+      previous = aux;
+      aux = aux->next;
+      i++;
   }
   previous->next = aux->next;
   free(aux);
   return SUCCESS;
+  }
 }
 
 
