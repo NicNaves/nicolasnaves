@@ -182,16 +182,14 @@ int list_erase(TLinkedList *li, int pos){
     return INVALID_NULL_POINTER;
   list_node *aux,*previous;
   aux = li->head;
-  int i = 1;
-  while(i < pos){
-    if (aux == NULL || aux->next == NULL)
+  int i = 0;
+  while(i < pos-1){
+    if (aux->next == NULL)
       return OUT_OF_RANGE;
     previous = aux;
     aux = aux->next;
     i++;
   }
-  if(pos > i || pos < i)
-    return OUT_OF_RANGE;
   previous->next = aux->next;
   free(aux);
   return SUCCESS;
@@ -203,15 +201,13 @@ int list_find_pos(TLinkedList *li, int pos, struct student *sl){
     return INVALID_NULL_POINTER;
   list_node *aux; 
   aux = li->head;
-  int i = 1;
-  while(i < pos){
-    if (aux == NULL || aux->next == NULL)
+  int i = 0;
+  while(i < pos-1){
+    if (aux->next == NULL)
       return ELEM_NOT_FOUND;
     aux = aux->next;
     i++;
   }
-  if(pos > i || pos < i)
-    return ELEM_NOT_FOUND;
   *sl = aux->data;
   return SUCCESS;
 }
@@ -222,14 +218,11 @@ int list_find_mat(TLinkedList *li, int id, struct student *sl){
   list_node *aux;
   aux = li->head;
   while(aux->data.id != id ){
-    if (aux == NULL || aux->next == NULL)
+    if (aux->next == NULL)
       return ELEM_NOT_FOUND;
     aux = aux->next;
   }
-  if(aux->data.id != id)
-    return ELEM_NOT_FOUND;
-  else
-    *sl = aux->data;
+  *sl = aux->data;
   return SUCCESS;
 }
 
@@ -268,7 +261,7 @@ int list_get_pos(TLinkedList *li, int id, int *pos){
   if(id == aux->data.id)
     return SUCCESS;
   while(id != aux->data.id){
-    if (aux == NULL || aux->next == NULL)
+    if (aux->next == NULL)
       return ELEM_NOT_FOUND;
     aux = aux->next;
     i++;

@@ -116,9 +116,7 @@ int main(){
   
   printf("\n\n Tamanho da Lista: %d\n\n", list_size(list));
 
-  if((ret = list_free(list)) == SUCCESS)
-    list_print(list);
-  else
+  if((ret = list_free(list)) == INVALID_NULL_POINTER)
     printf("\nPonteiro inválido.");
 
   return 0;
