@@ -50,8 +50,10 @@ int main(){
     printf("\nPonteiro inválido.");
 
   printf("\n\n Adicionando na posição 3 \n\n");
-  if((ret = list_insert(list, 3, sl[2])) == SUCCESS)
+  if((ret = list_insert(list, 3, sl[2])) == SUCCESS){
     list_print_foward(list);
+    printf("\n\nLista Invertida\n\n");
+    list_print_reverse(list);}
   else if (ret == INVALID_NULL_POINTER)
     printf("\nPonteiro inválido.");
   else if (ret == OUT_OF_MEMORY)
@@ -65,6 +67,8 @@ int main(){
     printf("\nPonteiro inválido.");
   else if (ret == ELEM_NOT_FOUND)
     printf("\nElemento não encontrado.");
+
+
   
   printf("\n\n Consulta quem possui matrícula 2  \n\n");
   if((ret = list_find_mat(list,  2, &aux)) == SUCCESS)
