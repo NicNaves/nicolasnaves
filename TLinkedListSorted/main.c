@@ -36,6 +36,8 @@ int main(){
       printf("\nSem Memória.");
     else if (ret == SORTED)
       printf("\nLista nao Ordenada.");
+    else if (ret == OUT_OF_RANGE)
+    printf("\nFora de alcance.");
   }
   list_print(list);
 
@@ -86,12 +88,16 @@ int main(){
   printf("\n\n Consulta quem é o primeiro \n\n");
   if((ret = list_front(list, &aux)) == SUCCESS)
     printf("Id: %d \nNome: %s\nNotas: ( %.2f, %.2f, %.2f )\n",aux.id, aux.name, aux.g1, aux.g2,aux.g3);
+  else if (ret == OUT_OF_RANGE)
+    printf("\nFora de alcance.");
   else
     printf("\nPonteiro inválido.");
   
   printf("\n\n Consulta quem é o último \n\n");
   if((ret = list_back(list, &aux)) == SUCCESS)
     printf("Id: %d \nNome: %s\nNotas: ( %.2f, %.2f, %.2f )\n",aux.id, aux.name, aux.g1, aux.g2,aux.g3);
+  else if (ret == OUT_OF_RANGE)
+    printf("\nFora de alcance.");
   else
     printf("\nPonteiro inválido.");
   
@@ -107,12 +113,16 @@ int main(){
   printf("\n\n Remove no inicio \n\n");
   if((ret = list_pop_front(list)) == SUCCESS)
     list_print(list);
+  else if (ret == OUT_OF_RANGE)
+    printf("\nFora de alcance.");
   else
     printf("\nPonteiro inválido.");
   
   printf("\n\n Remove no final \n\n");
   if((ret = list_pop_back(list)) == SUCCESS)
     list_print(list);
+  else if (ret == OUT_OF_RANGE)
+    printf("\nFora de alcance.");
   else
     printf("\nPonteiro inválido.");
   
@@ -121,11 +131,16 @@ int main(){
     list_print(list);
   else if(ret == INVALID_NULL_POINTER)
     printf("\nPonteiro inválido.");
-  else if (ret == OUT_OF_RANGE)
-    printf("\nElemento fora de alcance.");
+  else if (ret == ELEM_NOT_FOUND)
+    printf("\nElemento não encontrado.");
 
   
-  printf("\n\n Tamanho da Lista: %d\n\n", list_size(list));
+  if((ret = list_size(list)) == INVALID_NULL_POINTER)
+    printf("\nPonteiro inválido.");
+  else if (ret == OUT_OF_RANGE)
+    printf("\nFora de alcance.");
+  else
+     printf("\n\n Tamanho da Lista: %d\n\n", list_size(list));
 
   if((ret = list_free(list)) == INVALID_NULL_POINTER)
     printf("\nPonteiro inválido.");

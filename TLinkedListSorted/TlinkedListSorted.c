@@ -86,6 +86,8 @@ int list_insert(TLinkedList *li, int pos, struct student sl){
       return INVALID_NULL_POINTER;
   if(li->sorted == 1)
     return SORTED;
+  if ((pos <= 0) || (pos > li->size + 1))
+    return OUT_OF_RANGE;
   else{
     list_node *node = malloc(sizeof(list_node));
     if(node == NULL)
@@ -163,6 +165,8 @@ int list_size(TLinkedList *li){
 int list_pop_front(TLinkedList *li){
   if(li == NULL)
     return INVALID_NULL_POINTER;
+  if (li->size == 0)
+      return OUT_OF_RANGE;
   list_node *aux = li->head;
   li->head = aux->next;
   free(aux);
@@ -173,6 +177,8 @@ int list_pop_front(TLinkedList *li){
 int list_pop_back(TLinkedList *li){
   if(li == NULL)
     return INVALID_NULL_POINTER;
+  if (li->size == 0)
+      return OUT_OF_RANGE;
   if(li->head->next == NULL){
     free(li->head);
     li->head = NULL;}
@@ -203,7 +209,7 @@ int list_erase(TLinkedList *li, int pos){
     int i = 0;
     while(i < pos-1){
       if (aux->next == NULL)
-        return OUT_OF_RANGE;
+        return ELEM_NOT_FOUND;
       previous = aux;
       aux = aux->next;
       i++;
@@ -250,7 +256,7 @@ int list_front(TLinkedList *li, struct student *sl){
   if(li == NULL)
     return INVALID_NULL_POINTER;
   if(li->head == NULL)
-     return INVALID_NULL_POINTER;
+     return OUT_OF_RANGE;
   list_node *aux;
   aux = li->head;
   *sl = aux->data;  

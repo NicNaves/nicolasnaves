@@ -192,7 +192,7 @@ int list_erase(TLinkedList *li, int pos){
     int i = 0;
     while(i < pos-1){
       if (aux->next == NULL)
-        return OUT_OF_RANGE;
+        return ELEM_NOT_FOUND;
       previous = aux;
       aux = aux->next;
       i++;
@@ -238,7 +238,7 @@ int list_front(TLinkedList *li, struct student *sl){
   if(li == NULL)
     return INVALID_NULL_POINTER;
   if(li->head == NULL)
-     return INVALID_NULL_POINTER;
+     return OUT_OF_RANGE;
   list_node *aux;
   aux = li->head;
   *sl = aux->data;  
