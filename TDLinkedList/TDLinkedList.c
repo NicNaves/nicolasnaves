@@ -171,8 +171,9 @@ int list_print(TDLinkedList *li){
 return SUCCESS;
 }
 
-int list_print_reverse(TDLinkedList *li)
-{
+int list_print_reverse(TDLinkedList *li){
+  if(li == NULL)
+    return INVALID_NULL_POINTER;
   DLNode *aux = li->end;
   char Maxletra[10];
   printf("%s%*s%20s\n", "Id ",-MAXLETRAS, "Nome", "Notas");
