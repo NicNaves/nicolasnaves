@@ -1,3 +1,6 @@
+#ifndef TLinkedListSortedh
+#define TLinkedListSortedh
+
 #define SUCCESS 0
 #define INVALID_NULL_POINTER -1
 #define OUT_OF_MEMORY -2
@@ -7,11 +10,8 @@
 
 
 
-struct student{
-    int id;
-    char name[30];
-    float g1,g2,g3;
-};
+
+#include "..\aluno.h"
 
 typedef struct TLinkedList TLinkedList;
 
@@ -38,3 +38,5 @@ int list_back(TLinkedList *li, struct student *sl);
 int list_get_pos(TLinkedList *li, int id, int *pos);
 
 int list_print(TLinkedList *li);
+
+#endif
