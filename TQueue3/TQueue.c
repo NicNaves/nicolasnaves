@@ -104,28 +104,12 @@ int print_queue(TQueue *fi){
     return INVALID_NULL_POINTER;
   printf("%s%*s%20s\n", "Id ",-MAXLETRAS, "Nome", "Notas");
   printf("------------------------------------------------\n"); 
-  if(fi->front < fi->rear){
-    for (int i = fi->front; i < fi->rear; i++)  {
+    for (int i = 0; i < fi->size; i++)  {
       printf("%d ",  fi->data[i].id);
       printf("%*s ",-MAXLETRAS, fi->data[i].name);
       printf("%15.1f %5.1f %5.1f\n",fi->data[i].g1, fi->data[i].g2, fi->data[i].g3); 
       printf("------------------------------------------------\n"); 
     }
-  }
-  if(fi->front > fi->rear || (fi->front == fi->rear && fi->size > 1)){
-    for (int i = fi->front; i < fi->MAX; i++)  {
-      printf("%d ",  fi->data[i].id);
-      printf("%*s ",-MAXLETRAS, fi->data[i].name);
-      printf("%15.1f %5.1f %5.1f\n",fi->data[i].g1, fi->data[i].g2, fi->data[i].g3); 
-      printf("------------------------------------------------\n"); 
-    }
-    for (int i = 0; i < fi->rear; i++)  {
-      printf("%d ",  fi->data[i].id);
-      printf("%*s ",-MAXLETRAS, fi->data[i].name);
-      printf("%15.1f %5.1f %5.1f\n",fi->data[i].g1, fi->data[i].g2, fi->data[i].g3); 
-      printf("------------------------------------------------\n"); 
-    }
-  }
   return SUCCESS;
 }
 
