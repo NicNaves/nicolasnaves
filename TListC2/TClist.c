@@ -200,6 +200,8 @@ int list_pop_front(TClist *li){
   if(li->end == NULL)
     return OUT_OF_MEMORY;
   Clist_node *aux = li->end->next;
+  if (li->next == aux)
+    li->next = aux->next;
   li->end->next = aux->next;
   li->size--;
   free(aux);
@@ -217,6 +219,8 @@ int list_pop_back(TClist *li){
     li->size--;
     return SUCCESS;
   }
+  if (li->next == li->end)
+    li->next = li->end->next;
   Clist_node *previous = NULL;
   Clist_node *aux = li->end;
   while(aux->next != li->end){
