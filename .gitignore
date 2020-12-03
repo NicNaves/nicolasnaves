@@ -7,3 +7,9 @@ TQueue2/teste.exe
 TQueue2/main.o
 TQueue1/TQueue.o
 TQueue1/main.o
+TListC/TClist.o
+TListC/main.o
+TListC/a.exe
+TListC2/TClist.o
+TListC2/main.o
+TListC2/a.exe
