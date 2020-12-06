@@ -23,7 +23,7 @@ int verifica (char *s) {
             else{
                 stack_top(st, &c);
                 if(c.ch != '(')
-                    return -1;
+                    return -1; // falta liberar a pilha
                 else
                     stack_pop(st);
             }

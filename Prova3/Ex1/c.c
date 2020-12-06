@@ -38,3 +38,16 @@ int list_splice(List *dest, List *source, int pos){
     return 0;
 }
 
+/*
+(cada item vale 2)
+1) fez teste de posição e nulos
+2
+2) Testou se a inserção é no início
+1
+3) Testou se a posição é depois do último elemento
+1
+4) verificou que é no meio da lista e percorreu a lista procurando a posição
+1
+5) Atualizou o tamanho das listas
+2
+*/
