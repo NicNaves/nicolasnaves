@@ -6,7 +6,7 @@
 
 
 
-void opção(void)
+void opcao(void)
 {
     printf("\n");
     printf("1 - Criar Lista  \n");
@@ -28,13 +28,13 @@ void pausar(){
 unsigned int op (void) //pega a escolha
 {
     int op = 0;
-    printf("\nEscolha uma opção: ");
+    printf("\nEscolha uma opcao: ");
     scanf("%u", &op); 
     //printf("\n");
     while ( !(0 <= op && op <= 7))
     {
-        printf("opção inválida!!!\n\n");
-        printf("Digite uma opção: ");
+        printf("opcao inválida!!!\n\n");
+        printf("Digite uma opcao: ");
         scanf("%d", &op);
     }
     return op;
@@ -49,7 +49,7 @@ void menu()
 
    
     while(1){
-    opção();
+    opcao();
     switch (op()){
 
     case 1:
