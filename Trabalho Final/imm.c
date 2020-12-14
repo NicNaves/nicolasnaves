@@ -201,6 +201,8 @@ int segmentIMAGE(int thr, char *arq_entrada, char *arq_saida)
     }
     else
         return INVALID_FILE;
+    liberaImage(img);
+    liberaImage(img_saida);
 }
 
 int segmentImage(int thr, Img *img, Img *img_saida) // segmenta qualquer imagem
@@ -237,6 +239,8 @@ int compCONEXO(char *arquivo_entrada, char *arquivo_saida)
         else
             return INVALID_FILE;
     }
+    liberaImage(im);
+    liberaImage(im_rot);
 }
 
 int compConexo(Img *im, Img *im_rot) //conexo da img entrada;
@@ -305,6 +309,8 @@ int LABIRINTO(char *arquivo_entrada, char *arquivo_saida) // resolve um labirint
     }
     else if (labirinto(mapa1, mapa2) == MAP_SEM_SAIDA)
         return MAP_SEM_SAIDA;
+    liberaImage(mapa1);
+    liberaImage(mapa2);
 }
 
 int labirinto(Img *mapa1, Img *mapa2) // resolve um labirinto
@@ -336,23 +342,25 @@ int labirinto(Img *mapa1, Img *mapa2) // resolve um labirinto
             break;
         } //if
     }     //for
-    for (int j = 0; j < col; j++)
-    {
-        mat2D_get_value(mapa1->data, 0, j, &valmap);
-        if (valmap == 1) // se esse valor for 1 será o ponto de inicio.
+    if(inicio.x == -1){
+        for (int j = 0; j < col; j++)
         {
-            inicio.x = 0;
-            inicio.y = j;
-            break;
-        } //if
-        mat2D_get_value(mapa1->data, lin - 1, j, &valmap);
-        if (valmap == 1) // se esse valor for 1 será o ponto de inicio.
-        {
-            inicio.x = lin - 1;
-            inicio.y = j;
-            break;
-        } //if
-    }     //for
+            mat2D_get_value(mapa1->data, 0, j, &valmap);
+            if (valmap == 1) // se esse valor for 1 será o ponto de inicio.
+            {
+                inicio.x = 0;
+                inicio.y = j;
+                break;
+            } //if
+            mat2D_get_value(mapa1->data, lin - 1, j, &valmap);
+            if (valmap == 1) // se esse valor for 1 será o ponto de inicio.
+            {
+                inicio.x = lin - 1;
+                inicio.y = j;
+                break;
+            } //if
+        }     //for
+    }         //if
 
     p_atual = inicio;
 
@@ -472,7 +480,6 @@ int imagemParaArquivo(Img *img, char *arquivo) // transforma a img em um arquivo
             }
         }
     }
-
     return SUCCESS;
 }
 
